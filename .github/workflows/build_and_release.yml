@@ -1,20 +1,11 @@
 name: CI/CD Windows Installer
 
 on:
-  # El pipeline se ejecutará cada vez que se publique un nuevo 'Release'
-  release:
-    types: [published]
-
-on:
   release:
     types: [published]
 
 permissions:
   contents: write # ¡Añade esta línea! Le da permiso para escribir archivos.
-
-jobs:
-  build-and-package:
-# ... (el resto del código sigue igual)
 
 jobs:
   build-and-package:
