@@ -18,11 +18,8 @@ UninstallDisplayIcon={app}\filehash.exe
 ; SetupIconFile=.\filehash.ico ; Opcional: si tienes un icono
 
 [Files]
-; =========================================================================
-; !!! LÍNEA CRÍTICA: REEMPLAZA ESTA RUTA POR LA RUTA ABSOLUTA DE TU ARCHIVO !!!
-; (EJEMPLO: C:\Users\renato\Desktop\EV4\dist\filehash.exe)
-Source: "C:\Users\renato\Desktop\EV4\dist\filehash.exe"; DestDir: "{app}"; Flags: ignoreversion
-; =========================================================================
+; RUTA CORRECTA para GitHub Actions
+Source: "dist\filehash.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 ; Crea un atajo en el menú de inicio
