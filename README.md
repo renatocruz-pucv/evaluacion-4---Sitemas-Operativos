@@ -2,11 +2,11 @@
 
 Esta herramienta de línea de comandos (CLI) permite generar un checksum SHA-256 para cualquier archivo, y se distribuye como un instalador nativo de Windows.
 
-1. Guía de Instalación y Uso
+Guía de Instalación y Uso
 
 La aplicación se ha empaquetado para Windows utilizando PyInstaller e Inno Setup, lo que asegura una instalación profesional y la adición automática al PATH del sistema.
 
-2. Instalación (Vía Artefacto CI/CD)
+Instalación (Vía Artefacto CI/CD)
 
 Diríjase a la pestaña Releases de este repositorio.
 
@@ -16,21 +16,21 @@ Ejecute el instalador. El programa se instalará en C:\Program Files (x86)\FileH
 
 Abra una nueva terminal (CMD o PowerShell).
 
-3. Verificación del PATH
+Verificación del PATH
 
 Para confirmar que la aplicación se añadió correctamente al PATH global de Windows, ejecute:  filehash --version
 
-4. Uso de la Herramienta (SHA-256)
+Uso de la Herramienta (SHA-256)
 
 Para generar el checksum de cualquier archivo, use el siguiente comando:  filehash C:\ruta\completa\a\tu\archivo.txt
 
-5. Desinstalación
+Desinstalación
 
 La herramienta se puede desinstalar de manera segura a través de la opción estándar de Windows: Panel de Control > Agregar o quitar programas.
 
-6. Matriz de Pruebas y CI/CD (Verificable)
+Matriz de Pruebas y CI/CD (Verificable)
 
-7. Automatización CI/CD
+Automatización CI/CD
 
 El proceso de build y publicación está completamente automatizado a través de GitHub Actions, garantizando la reproducibilidad y la integridad del instalador. El pipeline se activa con cada nuevo Release publicado.
 
