@@ -21,7 +21,8 @@ jobs:
     - name: 📦 Instalar PyInstaller e Inno Setup
       run: |
         pip install pyinstaller
-        choco install -y inno-setup
+        # CORRECCIÓN: Cambiamos 'inno-setup' a 'innosetup' (nombre correcto del paquete)
+        choco install -y innosetup
 
     - name: 🧪 Ejecutar Pruebas Automatizadas (Requisito 20%)
       # Prueba funcional: crea un archivo de prueba, y ejecuta el CLI
