@@ -5,6 +5,17 @@ on:
   release:
     types: [published]
 
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write # ¡Añade esta línea! Le da permiso para escribir archivos.
+
+jobs:
+  build-and-package:
+# ... (el resto del código sigue igual)
+
 jobs:
   build-and-package:
     runs-on: windows-latest # El ambiente de Windows 10/11 requerido
