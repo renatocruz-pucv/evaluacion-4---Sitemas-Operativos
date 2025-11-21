@@ -32,9 +32,9 @@ jobs:
         python calculadora.py test_data.txt
         
     - name: 🔨 Generar Ejecutable (filehash.exe)
-      # Usa el comando que te funcionó localmente
+      # Usamos 'python -m' para forzar a Python a buscar el módulo PyInstaller
       run: |
-        python -m pyinstaller calculadora.py --onefile --name filehash
+        python -m PyInstaller calculadora.py --onefile --name filehash
 
     - name: 💻 Compilar Instalador Inno Setup (.exe)
       # Compila el archivo .iss usando el nombre de archivo REAL: filehash_setup.is.iss
