@@ -1,0 +1,55 @@
+name: CI/CD Windows Installer
+
+on:
+  # El pipeline se ejecutará cada vez que se publique un nuevo 'Release'
+  release:
+    types: [published]
+
+jobs:
+  build-and-package:
+    runs-on: windows-latest # El ambiente de Windows 10/11 requerido
+
+    steps:
+    - name: ⬇️ Checkout del Código
+      uses: actions/checkout@v4
+
+    - name: 🐍 Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: 📦 Instalar PyInstaller e Inno Setup
+      run: |
+        pip install pyinstaller
+        choco install -y inno-setup
+
+    - name: 🧪 Ejecutar Pruebas Automatizadas (Requisito 20%)
+      # Prueba funcional: crea un archivo de prueba, y ejecuta el CLI
+      run: |
+        echo "Prueba automatizada" > test_data.txt
+        echo "Verificando ejecución de calculadora.py..."
+        python calculadora.py test_data.txt
+        
+    - name: 🔨 Generar Ejecutable (filehash.exe)
+      # Usa el comando que te funcionó localmente
+      run: |
+        python -m pyinstaller calculadora.py --onefile --name filehash
+
+    - name: 💻 Compilar Instalador Inno Setup (.exe)
+      # Compila el archivo .iss usando el nombre de archivo REAL: filehash_setup.is.iss
+      run: |
+        & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" filehash_setup.is.iss
+
+    - name: 🛡️ Generar Checksums (SHA-256) del Instalador (Requisito de Integridad)
+      # Genera el hash del instalador para su verificación
+      run: |
+        (Get-FileHash -Algorithm SHA256 .\InstallerOutput\filehash-installer-1.0.0.exe).Hash | Out-File -FilePath filehash-installer.sha256
+
+    - name: ⬆️ Publicar Artefactos del Release (Instalador y Hash)
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          InstallerOutput\filehash-installer-1.0.0.exe
+          filehash-installer.sha256
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
