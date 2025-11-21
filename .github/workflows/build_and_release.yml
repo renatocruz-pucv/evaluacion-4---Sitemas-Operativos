@@ -36,10 +36,10 @@ jobs:
         python -m pyinstaller calculadora.py --onefile --name filehash
 
     - name: 💻 Compilar Instalador Inno Setup (.exe)
-      # Compila el archivo .iss usando el nombre de archivo REAL: filehash_setup.is.iss
+      # Quitamos la ruta completa para dejar que el PATH encuentre ISCC.exe
       run: |
-        & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" filehash_setup.is.iss
-
+        ISCC.exe filehash_setup.is.iss
+        
     - name: 🛡️ Generar Checksums (SHA-256) del Instalador (Requisito de Integridad)
       # Genera el hash del instalador para su verificación
       run: |
